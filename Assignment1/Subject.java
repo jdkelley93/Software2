@@ -32,10 +32,14 @@ public class Subject extends Observable{
     }
     public void alert(){
         if (changed==true){
-        a.notifyObservers();
+            for(Object message : messages)
+            {
+                a.notifyObservers((String)message);
+            }
          System.out.print("All observers have been notified!");
          count=0;
          messages.clear();
+         changed=false;
     }
         else
             System.out.print("Not time to alert yet!");
