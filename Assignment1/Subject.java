@@ -20,7 +20,7 @@ public class Subject extends Observable{
     String message;
     
     public Subject(int times){
-    times=this.times;
+    this.times=times;
     }
 
     
@@ -32,26 +32,38 @@ public class Subject extends Observable{
     }
     public void alert(){
         if (changed==true){
-        a.notifyObservers();
+            for(Object message : messages)
+            {
+                a.notifyObservers((String)message);
+            }
          System.out.print("All observers have been notified!");
          count=0;
          messages.clear();
+         changed=false;
     }
         else
+        {
+            System.out.println("Count is: "+count);
             System.out.print("Not time to alert yet!");
             messages.add(message);
+            
             flag();
+        }
     }
      protected void flag(){
         count++;
         if(count>=times)
+        {
          changed=true;
+        alert();
+        }
          else 
             changed=false;
+        alert();
         
     }
       public void setmessage(String message){
-        message=this.message;
+        this.message=message;
     messages.add(message);
      }
     

@@ -8,16 +8,16 @@
  *
  * @author Chris Dunn
  */
-public class ObserverEx {
+public class Driver {
+    
         public static void main(String[]args)
         {
-                Subject sbj = new Subject(3);
-                sbj.add(new Concreteobserver());
-                
-                 sbj.setmessage("The weather for today is Cold");
-                 //sbj.alert();
-                 
-                
-        }
+            ConcreteSubject cs = new ConcreteSubject(3);
+            cs.setmessage("Hi");
+            cs.setmessage("Bye");
+            cs.setmessage("Go");
+            
+            
+        }       
     
 }
