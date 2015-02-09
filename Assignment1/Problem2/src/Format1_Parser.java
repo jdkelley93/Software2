@@ -9,8 +9,8 @@ import java.math.*;
  */
 public class Format1_Parser extends Parser{
 
-    public Format1_Parser(String filename) {
-        super(filename);
+    public Format1_Parser(String filename, String location) {
+        super(filename,location);
     }
 
     @Override
@@ -54,8 +54,14 @@ public class Format1_Parser extends Parser{
         
        
         Calc c = new Calc(orders);
-        DisplayStats ds = new DisplayStats(c);
-        ds.display();
+        DisplayStats ds = new DisplayStats(c, location);
+        try {
+            ds.display();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Format1_Parser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Format1_Parser.class.getName()).log(Level.SEVERE, null, ex);
+        }
    
     }
     

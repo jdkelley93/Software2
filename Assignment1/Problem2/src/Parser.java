@@ -9,9 +9,11 @@
  */
 public abstract class Parser {
     String filename;
+    String location;
     
-    Parser(String filename){
+    Parser(String filename, String location){
         this.filename = filename;
+        this.location = location;
     }
     
     abstract void parse();

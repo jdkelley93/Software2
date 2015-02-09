@@ -8,8 +8,8 @@ import java.util.logging.Logger;
  */
 public class Format2_Parser extends Parser {
 
-    public Format2_Parser(String filename) {
-        super(filename);
+    public Format2_Parser(String filename, String location) {
+        super(filename,location);
     }
 
     @Override
@@ -30,8 +30,14 @@ public class Format2_Parser extends Parser {
         }
         
        Calc c = new Calc(orders);
-        DisplayStats ds = new DisplayStats(c);
-        ds.display();
+        DisplayStats ds = new DisplayStats(c, location);
+        try {
+            ds.display();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Format2_Parser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Format2_Parser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
