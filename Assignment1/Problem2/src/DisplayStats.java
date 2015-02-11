@@ -1,6 +1,7 @@
 import java.text.*;
 import java.io.*;
 import java.lang.*;
+import java.util.*;
 /**
  *
  * @author David
@@ -9,6 +10,7 @@ public class DisplayStats {
     
     Calc c;
     String location;
+    ArrayList<String> files = new ArrayList<String>();
     DisplayStats(String location){
         this.location = location;
     }
@@ -33,7 +35,7 @@ public class DisplayStats {
         PrintWriter writer = new PrintWriter(filename,"UTF-8");
         
         
-        writer.println("\t\tWeekly Order Statistics");
+        writer.println("\t\tWeekly Order Statistics for " + location);
         writer.println("\nTotal Price For Orders: $" + df.format(total));
         writer.println("Average: $" + df.format(avg));
         writer.println("Max: $" + df.format(max));
@@ -42,7 +44,7 @@ public class DisplayStats {
         writer.println("Standard Deviation: $" + df.format(std));
         writer.close();
         
-        System.out.println("done writing file");
+        //System.out.println("done writing file");
     }
     
     void getStats(String location) throws FileNotFoundException, IOException{
@@ -59,9 +61,20 @@ public class DisplayStats {
         }
         
         br.close();
+
+        files.add(filename);
         
         
-        
+    }
+
+    void destroySession(ArrayList<String> locs){
+        for(int i = 0; i < locs.size(); i++){
+            files.add(locs.get(i)+"s.txt");
+        }
+        for(int i = 0; i < files.size(); i++){
+            File toDelete = new File(files.get(i));            
+                toDelete.delete();
+        }
     }
     
 }
