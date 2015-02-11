@@ -15,7 +15,7 @@ import java.util.Observer;
 public class Subject extends Observable{
     ArrayList <Object> messages= new ArrayList<>(100);
     Observable a = new Observable();
-    int count,times=0;
+    int count,times;
     boolean changed=false;
     String message;
     
@@ -32,39 +32,44 @@ public class Subject extends Observable{
     }
     public void alert(){
         if (changed==true){
+         setChanged();
             for(Object message : messages)
             {
                 a.notifyObservers((String)message);
+                //System.out.print("Notified called");
             }
          System.out.print("All observers have been notified!");
          count=0;
          messages.clear();
          changed=false;
     }
-        else
+        else if(changed==false)
         {
-            System.out.println("Count is: "+count);
-            System.out.print("Not time to alert yet!");
+           
+            System.out.println("Not time to alert yet!");
             messages.add(message);
-            
             flag();
+            
         }
+        else
+         System.out.print("Error.. Exiting");
+         System.exit(0);
     }
      protected void flag(){
         count++;
-        if(count>=times)
+        if(count==times)
         {
          changed=true;
-        alert();
+         alert();
         }
          else 
             changed=false;
-        alert();
+       alert();
         
     }
       public void setmessage(String message){
         this.message=message;
-    messages.add(message);
+         //messages.add(message);
      }
     
 }

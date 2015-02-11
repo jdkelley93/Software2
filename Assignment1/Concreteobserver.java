@@ -26,9 +26,9 @@ public class Concreteobserver implements Observing{
             message=messagegot;
             System.out.print("The message sent out to all observers is: "+messagegot);
             
-            ConcreteSubject sub = new ConcreteSubject(10);
+            /*ConcreteSubject sub = new ConcreteSubject(10);
            String messagepulled= sub.getmessage();
-           System.out.print("The message pulled from concrete subject is "+messagepulled);
+           System.out.print("The message pulled from concrete subject is "+messagepulled);*/
             
             
             

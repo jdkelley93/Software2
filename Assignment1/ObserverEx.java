@@ -15,7 +15,7 @@ public class ObserverEx {
                 sbj.add(new Concreteobserver());
                 
                  sbj.setmessage("The weather for today is Cold");
-                 //sbj.alert();
+                 sbj.alert();
                  
                 
         }
