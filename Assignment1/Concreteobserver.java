@@ -22,13 +22,15 @@ public class Concreteobserver implements Observing{
         
         public void update(Observable a, Object b)
         {
-            String messagegot = (String)b;
-            message=messagegot;
-            System.out.print("The message sent out to all observers is: "+messagegot);
+            String messages=" ";
+           
+            System.out.println("Messages received: "+b);
             
-            /*ConcreteSubject sub = new ConcreteSubject(10);
-           String messagepulled= sub.getmessage();
-           System.out.print("The message pulled from concrete subject is "+messagepulled);*/
+         
+           Subject sub = (Subject)a;
+            String messagepulled= sub.getmessage();
+           System.out.println("\n\n\nThe last message pulled from the subject is :"+messagepulled+"\n\n\n\n");
+            
             
             
             

@@ -11,11 +11,16 @@
 public class ObserverEx {
         public static void main(String[]args)
         {
-                Subject sbj = new Subject(3);
+                Subject sbj = new Subject(2);
                 sbj.add(new Concreteobserver());
                 
                  sbj.setmessage("The weather for today is Cold");
-                 sbj.alert();
+                 sbj.setmessage("The weather for today is Hot");
+                 sbj.setmessage("The weather for today is Windy");
+                 sbj.setmessage("The weather for today is Cloudy");
+                 sbj.setmessage("The weather for today is Rainy");
+                  sbj.setmessage("The weather for today is Gloomy");
+                
                  
                 
         }

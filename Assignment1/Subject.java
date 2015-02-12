@@ -13,63 +13,89 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Subject extends Observable{
-    ArrayList <Object> messages= new ArrayList<>(100);
-    Observable a = new Observable();
-    int count,times;
+   
+    static int count,times;
+    int left;
+     ArrayList <Object> messages= new ArrayList<>(times+1);
     boolean changed=false;
-    String message;
+    String message="";
     
-    public Subject(int times){
+   
+   
+   public Subject(){
+    
+    
+    }
+    
+     public Subject(int times){
     this.times=times;
+    
     }
 
     
     public void add(Observer o){
-        a.addObserver(o);
+        addObserver(o);
     }
     public void delete(Observer o){
-        a.deleteObserver(o);
+        deleteObserver(o);
     }
-    public void alert(){
+    public void alert()
+    {
         if (changed==true){
          setChanged();
-            for(Object message : messages)
-            {
-                a.notifyObservers((String)message);
-                //System.out.print("Notified called");
-            }
-         System.out.print("All observers have been notified!");
-         count=0;
-         messages.clear();
+          notifyObservers(messages);
+          messages.clear();
+             //count=0;
          changed=false;
     }
         else if(changed==false)
         {
-           
-            System.out.println("Not time to alert yet!");
-            messages.add(message);
             flag();
-            
         }
-        else
+        else{
          System.out.print("Error.. Exiting");
          System.exit(0);
+        }
     }
-     protected void flag(){
-        count++;
-        if(count==times)
+     protected void flag()
+     {
+        if(count%times==0)
         {
          changed=true;
          alert();
         }
-         else 
+        else{
             changed=false;
-       alert();
+         alert();
+      }  
+    }
+      public void setmessage(String message)
+      {
+        count++;
+        left=times-count;
+        this.message=message;
+         messages.add(message);
+        if(count<times){
+        System.out.println("Not time to alert yet! " +left+" more messages have to be sent before the observers will be able to view content" );
+          
+         }
+         if(count==times)
+         {
+            alert();
+         }
+
+      
+         if(count>times)
+         {
+            count=0;
+            setmessage(message);
+         }
+         
+       
+     }
+      public String getmessage(){
+        return message;
+        
         
     }
-      public void setmessage(String message){
-        this.message=message;
-         //messages.add(message);
-     }
-    
 }
