@@ -10,7 +10,6 @@
  */
 public class ConcreteSubject extends 
         Subject{
-static String message ="";
     public ConcreteSubject(int times) {
         super(times);
     }
@@ -19,16 +18,8 @@ static String message ="";
     public void alert(){
         
     }
-    public String getmessage(){
-        return message;
-        
-        
-    }
+  
     
-     public void setmessage(String message){
-        message=this.message;
-    messages.add(message);
-     }
     
     
 }
