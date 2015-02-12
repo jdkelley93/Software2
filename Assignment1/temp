@@ -1,0 +1,8 @@
+ def self.latest
+    Product.order(:updated_at).last
+  end
+  
+  
+  def self.pop
+      Product.order(:popularity).last
+  end
