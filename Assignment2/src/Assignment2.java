@@ -12,10 +12,10 @@ public class Assignment2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        SimpleModelFactory qm = new QuadraticModel();
+        SimpleModelFactory lm = new LinearModel();
         ArrayList<Double> xValues = new ArrayList<Double>();
         ArrayList<Double> yValues;
-        String func = "5x*2+4x+3";
+        String func = "5x+6-7x";
         
         xValues.add(1.0);
         xValues.add(2.0);
@@ -23,7 +23,14 @@ public class Assignment2 {
         xValues.add(4.0);
         xValues.add(5.0);
         
-        yValues = qm.evaluate(func, xValues);
+        yValues = lm.evaluate(func, xValues);
+        
+        
+        
+        for(int i = 0; i < yValues.size(); i++){
+            System.out.print(func + " evaluated at " + xValues.get(i) + " = ");
+            System.out.print(yValues.get(i) + "\n");
+        }
         
         
         
